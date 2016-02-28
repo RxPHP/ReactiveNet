@@ -87,8 +87,39 @@ $remote->call('some.progress.test', [1, 2, 3])
 
 ```
 
+Javascript
+```JS
+    var remote = new ReactiveNet("ws://demo.thruway.ws:9090", 'realm1');
+
+    var obs1 = remote.channel('test.channel.stuff');
+
+    //Subscribe to just one stream
+    obs1.subscribe(function (x) {
+        console.log(x);
+    });
+
+    //Make Call
+    remote.call('some.progress.test', [1, 2, 3]).subscribe(
+            function (result) {
+                console.log(result);
+            },
+            function (err) {
+                console.log('error');
+            },
+            function () {
+                console.log('completed');
+            });
+
+```
 
 
+Todo:
+
+- Write tests
+- Handle reconnecting
+- Better error handling
+- Dispose stuff
+- Rename call and register.  
 
 See more in the [examples](Examples)
 

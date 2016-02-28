@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://autobahn.s3.amazonaws.com/autobahnjs/latest/autobahn.min.jgz"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.0.8/rx.all.js"></script>
+    <script src="reactive-net.js"></script>
+
+</head>
+<body>
+
+<script>
+    var remote = new ReactiveNet("ws://demo.thruway.ws:9090", 'realm1');
+
+    var obs1 = remote.channel('test.channel.stuff');
+
+    //Subscribe to just one stream
+    obs1.subscribe(function (x) {
+        console.log(x);
+    });
+
+    //Make Call
+    remote.call('some.progress.test', [1, 2, 3]).subscribe(
+            function (result) {
+                console.log(result);
+            },
+            function (err) {
+                console.log('error');
+            },
+            function () {
+                console.log('completed');
+            });
+</script>
+
+</body>
+</html>
