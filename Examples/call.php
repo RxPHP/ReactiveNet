@@ -10,7 +10,7 @@ $remote    = new ReactiveNet("ws://demo.thruway.ws:9090", 'realm1');
 $scheduler = new EventLoopScheduler(\EventLoop\getLoop());
 
 //Register Call
-$remote->register("some.progress.test2", function ($args) use ($scheduler) {
+$remote->register("some.progress.test", function ($args) use ($scheduler) {
     return Observable::interval(1000, $scheduler)->take($args[2]);
 })
     ->subscribeCallback(

@@ -13,6 +13,7 @@ use Rx\SchedulerInterface;
 use Rx\Subject\ReplaySubject;
 use Rx\Subject\Subject;
 use Thruway\ClientSession;
+use Thruway\Message\ErrorMessage;
 use Thruway\Peer\Client;
 use Thruway\Transport\PawlTransportProvider;
 
@@ -110,8 +111,8 @@ class ReactiveNet
                         }
                         $observer->onCompleted();
                     },
-                    function ($error) use ($observer) {
-                        $observer->onNext($error);
+                    function (ErrorMessage $error) use ($observer) {
+                        $observer->onError(new Exception($error));
                     },
                     function ($values) use ($observer) {
                         $observer->onNext($values[0]);
@@ -129,8 +130,4 @@ class ReactiveNet
             ->takeUntil($disposed);
     }
 
-    public function getSession()
-    {
-        return $this->session;
-    }
 }
