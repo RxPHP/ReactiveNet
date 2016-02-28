@@ -1,0 +1,35 @@
+{
+  "name": "rx/reactive-net",
+  "type": "library",
+  "description": "Use observables over the network",
+  "keywords": [
+    "rxphp",
+    "reactivex",
+    "rx.php",
+    "thruway",
+    "wamp"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "David Dan",
+      "email": "davidwdan@gmail.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Matt Bonneau",
+      "email": "matt@bonneau.net",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "voryx/thruway": "dev-master",
+    "reactivex/rxphp": "dev-master",
+    "voryx/event-loop": "^0.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ReactiveNet\\": "src"
+    }
+  }
+}
