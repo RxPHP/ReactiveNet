@@ -19,7 +19,7 @@ ReactiveNet.prototype.call = function (uri, args, options) {
 
     options = options || {};
     options.receive_progress = true;
-    var disposed = Rx.Subject();
+    var disposed = new Rx.Subject();
 
     return this.session
         .flatMap(function (session) {
@@ -41,8 +41,8 @@ ReactiveNet.prototype.call = function (uri, args, options) {
                     );
                 }
             )
-        });
-    //.takeUntil(disposed);
+        })
+        .takeUntil(disposed);
 };
 
 function ChannelSubject(session, uri, options) {
